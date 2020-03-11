@@ -167,7 +167,6 @@ def scrape():
 
     # Set the index to the Description column and print to verify
     mars_facts_df.set_index('Description', inplace=True)
-    #mars_scraped_data["mars_facts"] = mars_facts_df.to_dict('index')
     print("Found these Mars Facts...\n")
     print(mars_facts_df)
 
