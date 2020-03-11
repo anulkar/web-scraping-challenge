@@ -1,37 +1,58 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-</head>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-<body>
+        <!-- My CSS -->
+        <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
 
-    <div class="container">
-        <div class="jumbotron">
-            <h1>Mission to Mars</h1>
-            <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+        <title>Mission To Mars - Web Scraping</title>
+    </head>
 
+    <body>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+        {% for mars_info in mars_data%}
+        <div class="container">
+            <div class="jumbotron bg-dark">
+                <h1 class="text-center text-white">Mission to Mars</h1>
+                <p class="text-center"><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+            </div>
+            <div class="card text-white bg-dark">
+                <div class="card-header">Latest Mars News</div>
+                <div class="card-body">
+                    <h5 class="card-title">{{mars_info.news_title}}</h5>
+                    <p class="card-text">{{mars_info.news_teaser}}</p>
+                </div>
+            </div>
         </div>
 
-            {% for mars_info in mars_data%}
-                    <div class="col-lg-4">
-                            <div class="card" style="width: 20rem;">
-                                <div class="card-body">
-                                  <h4 class="card-title">Costa Rica</h4>
-                                  <h6 class="card-subtitle mb-2 text-muted">{{ forecast.time }} - {{ forecast.name }}: {{ forecast.min_temp }} | {{forecast.max_temp}}</h6>
-                                  <p class="card-text">Surf: {{ forecast.surf_location }} | {{ forecast.height }}</p>
-                                </div>
-                              </div>
-                          </div>
-            {% endfor %}
-
-    </div>
-
-</body>
-
+        <!-- <div class="container">
+            <div class="row"> -->
+                <div class="box white">
+                    <h3 class="title">Mars Hemispheres</h3>
+                    <hr>
+                    <div class="container">
+                    {% for hem in mars_info.mars_hemispheres%}
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <img class="thumbnail" src="{{hem.img_url}}" alt="{{hem.title}}" >
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </div>
+                </div>
+            <!-- </div>
+        </div> -->
+        {% endfor %}
+    </body>
 </html>
