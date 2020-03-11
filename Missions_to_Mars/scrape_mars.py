@@ -174,6 +174,7 @@ def scrape():
     # Iterate over DataFrame and store Mars Facts into a dictionary
     for i, row in mars_facts_df.iterrows():
         i = i[:-1]
+        i = i.replace(" ", "_")
         mars_scraped_data[i] = row[0]
 
     # -------------------------------------------------------------------------------------------------
