@@ -24,11 +24,14 @@ def home():
 @app.route("/scrape")
 def scrape():
 
+    # Delete existing documents from MongoDB first so we can store freshly scraped data 
+    mongo.db.collection.delete_many({})
+
     # Run Mars scrape function
     mars_scraped_data = scrape_mars.scrape()
 
     # Insert the Mars scraped data into MongoDB
-    mongo.db.collection.update({}, mars_scraped_data, upsert=True)
+    mongo.db.collection.insert_one(mars_scraped_data)
 
     # Redirect back to home page
     return redirect("/", code=302)
