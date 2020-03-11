@@ -28,7 +28,7 @@ def scrape():
     mars_scraped_data = scrape_mars.scrape()
 
     # Insert the Mars scraped data into MongoDB
-    mongo.db.collection.insert_one(mars_scraped_data)
+    mongo.db.collection.update({}, mars_scraped_data, upsert=True)
 
     # Redirect back to home page
     return redirect("/", code=302)
